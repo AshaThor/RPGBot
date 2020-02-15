@@ -19,13 +19,14 @@ public class CreatePlayerStructure {
     private CategoryWrapper categoryWrapper;
     @Autowired
     private ChannelWrapper channelWrapper;
-
-    public void makeCategory(@Nonnull MessageReceivedEvent event) {
-        categoryWrapper.create(event);
-        logger.info("Make Category Success");
+    public void makeCategory(@Nonnull MessageReceivedEvent event, String[] userCommand) {
+        categoryWrapper.create(event, userCommand[1]);
     }
-    public void makeChannels(@Nonnull MessageReceivedEvent event){
-        channelWrapper.create(event);
-        logger.info("Make Channel Success");
+
+    public void makeCategoryWithChildren(@Nonnull MessageReceivedEvent event, String[] userCommand) {
+        categoryWrapper.createWithChildren(event, userCommand);
+    }
+    public void makeChannel(@Nonnull MessageReceivedEvent event, String[] userCommand){
+        channelWrapper.create(event,userCommand[1]);
     }
 }

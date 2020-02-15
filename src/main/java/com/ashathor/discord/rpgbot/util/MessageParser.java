@@ -8,12 +8,14 @@ import javax.annotation.Nonnull;
 
 @Component
 public class MessageParser {
-    public String[] spaceParser(@Nonnull MessageReceivedEvent event){
+    public String[] parser(@Nonnull MessageReceivedEvent event,String character){
         Message message = event.getMessage();
         String content = message.getContentRaw();
         // getContentRaw() is an atomic getter
         // getContentDisplay() is a lazy getter which modifies the content for e.g. console view (strip discord formatting)
-        String[] userMessage = content.split((" "));
-        return userMessage;
+        return content.split((character));
+    }
+    public String[] parser(String raw, String character){
+        return raw.split((character));
     }
 }

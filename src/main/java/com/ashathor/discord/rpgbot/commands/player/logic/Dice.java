@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 @Component
 public class Dice{
@@ -20,10 +21,10 @@ public class Dice{
      * */
     public ArrayList<Integer> roll(int volume, int sides){
         //Make list of rolls to send to the player
-        ArrayList<Integer> roles = new ArrayList<Integer>(volume);
+        ArrayList<Integer> roles = new ArrayList<>(volume);
         logger.info("Array of rolls created");
         for(int count = 0; count < volume; count++) {
-            roles.add((int)(Math.random() * sides) + 1);
+            roles.add(new Random().nextInt(sides)+1);
         }
         logger.info("Rolling success");
         sort(roles);

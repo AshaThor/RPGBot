@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 
 @Component
 public class ChannelWrapper {
-    public void create(@Nonnull MessageReceivedEvent event){
-        event.getGuild().createTextChannel("test3").queue();
+    public void create(@Nonnull MessageReceivedEvent event, String name){
+        event.getGuild().createTextChannel(name).queue();
     }
 }
