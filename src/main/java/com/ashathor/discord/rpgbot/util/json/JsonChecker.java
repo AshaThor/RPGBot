@@ -13,12 +13,12 @@ public class JsonChecker {
     @Autowired
     private JsonWriter jsonWriter;
 
-    public JSONObject checkAndMake(String path) {
+    public JSONObject checkAndMake(String path, Long playerId) {
         File tmpDir = new File(path);
         if (tmpDir.exists()) {
             return jsonReader.readFile(path);
         } else {
-            return jsonWriter.makeFile(path);
+            return jsonWriter.makeFile(path, playerId);
         }
     }
 }

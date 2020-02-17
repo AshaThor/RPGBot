@@ -1,0 +1,3 @@
+Help! - List Of !player commands
+!player - This displayes your characters name.
+!player create INSERT_NAME - This creates a character with this name / renames your character with this name.

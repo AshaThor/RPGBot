@@ -17,15 +17,17 @@ public class JsonWriter {
     @Autowired
     private JsonReader jsonReader;
 
-    public JSONObject makeFile(String path) {
+    public JSONObject makeFile(String path, Long playerId) {
         JSONObject obj = new JSONObject();
+        obj.put("player",playerId);
         try (FileWriter file = new FileWriter(path)) {
             file.write(obj.toJSONString());
-            return jsonReader.readFile(path);
         } catch (IOException e) {
+            logger.error("Error in Making File");
             logger.error(e.getMessage());
+            return null;
         }
-        return null;
+        return jsonReader.readFile(path);
     }
 
     public JSONObject updateField(JSONObject jsonObject, String path) {
@@ -33,6 +35,7 @@ public class JsonWriter {
             file.write(jsonObject.toJSONString());
             return jsonObject;
         } catch (IOException e) {
+            logger.error("Error in Updating File");
             logger.error(e.getMessage());
             return null;
         }

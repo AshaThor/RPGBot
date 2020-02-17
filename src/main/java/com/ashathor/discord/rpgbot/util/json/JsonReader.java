@@ -22,8 +22,9 @@ public class JsonReader {
         try (Reader reader = new FileReader(path)) {
             return (JSONObject) parser.parse(reader);
         } catch (IOException | ParseException e) {
+            logger.error("Error in Reading File");
             logger.error(e.getMessage());
+            return null;
         }
-        return null;
     }
 }
