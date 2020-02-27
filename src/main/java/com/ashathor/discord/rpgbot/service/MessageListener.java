@@ -1,8 +1,8 @@
 package com.ashathor.discord.rpgbot.service;
 
 import com.ashathor.discord.rpgbot.commands.admin.CreatePlayerStructure;
-import com.ashathor.discord.rpgbot.commands.player.DiceParser;
-import com.ashathor.discord.rpgbot.commands.player.PlayerCharacter;
+import com.ashathor.discord.rpgbot.commands.player.character.CharacterCommand;
+import com.ashathor.discord.rpgbot.commands.player.dice.DiceCommand;
 import com.ashathor.discord.rpgbot.util.MessageParser;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -24,9 +24,9 @@ public class MessageListener extends ListenerAdapter {
     @Autowired
     private MessageParser messageParser;
     @Autowired
-    private DiceParser diceParser;
+    private DiceCommand diceCommand;
     @Autowired
-    private PlayerCharacter playerCharacter;
+    private CharacterCommand characterCommand;
 
 
     @Override
@@ -42,11 +42,11 @@ public class MessageListener extends ListenerAdapter {
             }
             case "!dice": {
                 logger.info("Roll Dice Command Called");
-                diceParser.parser(event, userCommand);
+                diceCommand.command(event, userCommand);
                 break;
             }
             case "!makePlayerStructure": {
-                logger.info("Create Player Structure Command Called {}", userCommand[2]);
+                logger.info("Create Player Structure Command Called {}", userCommand[1]);
                 playerStructure.makeCategoryWithChildren(event, userCommand);
                 break;
             }
@@ -59,7 +59,7 @@ public class MessageListener extends ListenerAdapter {
                 break;
             }
             case "!player":{
-                playerCharacter.playerCharacter(event, userCommand);
+                characterCommand.command(event, userCommand);
                 break;
             }
             default: {

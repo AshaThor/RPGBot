@@ -1,4 +1,4 @@
-package com.ashathor.discord.rpgbot.commands.player.logic;
+package com.ashathor.discord.rpgbot.commands.player.dice.logic;
 
 import org.junit.jupiter.api.Test;
 

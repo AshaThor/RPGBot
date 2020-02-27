@@ -34,5 +34,6 @@ public class CategoryWrapper {
                     );
                 }
         );
+        logger.info("create with children has been called");
     }
 }

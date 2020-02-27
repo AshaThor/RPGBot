@@ -1,3 +1,12 @@
 Help! - List Of !player commands
-!player - This displayes your characters name.
+!player - This displays your characters name and data.
 !player create INSERT_NAME - This creates a character with this name / renames your character with this name.
+!player set
+-- class YOUR_RACE
+-- level YOUR_LEVEL
+-- background YOUR_INPUT
+-- race YOUR_RACE
+-- alignment YOUR_ALIGNMENT
+-- exp YOUR_EXP
+-- strength
+-- dex ..ect
