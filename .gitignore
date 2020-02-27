@@ -29,5 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
 /src/main/resources/token.txt
 /.mvn/wrapper/maven-wrapper.jar
+/JavaDoc/
