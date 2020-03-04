@@ -47,6 +47,7 @@ public class CharacterCommand {
         } else {
             switch (userCommand[1]) {
                 case "create": {
+                    makeCharacterWithName(playerID, userCommand, path);
                     break;
                 }
                 case "set": {

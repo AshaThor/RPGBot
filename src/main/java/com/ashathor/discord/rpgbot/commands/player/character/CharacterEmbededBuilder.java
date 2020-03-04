@@ -94,7 +94,7 @@ public class CharacterEmbededBuilder {
         }
     }
     private int modifier(int baseStat){
-        int mod = (int)(baseStat - 10) /2;
+        int mod = (int)Math.ceil((baseStat - 10) /2);
         if (mod < 0) {
             mod--;
         }
