@@ -13,9 +13,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>rpgbot</name>
     <description>RPG Bot for use in discord</description>
-
+    <packaging>jar</packaging>
     <properties>
-        <java.version>13</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -43,6 +43,10 @@
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>4.1.1_108</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -75,6 +79,11 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.brunocvcunha.jiphy</groupId>
+            <artifactId>jiphy</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -82,8 +91,27 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.ashathor.discord.rpgbot.RpgbotApplication</mainClass>
+                    <classifier>runnable</classifier>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>application-dev.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
     <repositories>
         <repository>

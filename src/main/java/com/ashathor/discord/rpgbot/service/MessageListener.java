@@ -3,6 +3,7 @@ package com.ashathor.discord.rpgbot.service;
 import com.ashathor.discord.rpgbot.commands.admin.CreatePlayerStructure;
 import com.ashathor.discord.rpgbot.commands.player.character.CharacterCommand;
 import com.ashathor.discord.rpgbot.commands.player.dice.DiceCommand;
+import com.ashathor.discord.rpgbot.random.Gifly;
 import com.ashathor.discord.rpgbot.util.MessageParser;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -27,6 +28,8 @@ public class MessageListener extends ListenerAdapter {
     private DiceCommand diceCommand;
     @Autowired
     private CharacterCommand characterCommand;
+    @Autowired
+    private Gifly gifly;
 
 
     @Override
@@ -34,9 +37,9 @@ public class MessageListener extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         // We don't want to respond to other bot accounts, including ourself
         String[] userCommand = messageParser.parser(event, " ");
+        MessageChannel channel = event.getChannel();
         switch (userCommand[0]) {
             case "!ping": {
-                MessageChannel channel = event.getChannel();
                 channel.sendMessage("Pong!").queue();
                 break;
             }
@@ -61,6 +64,9 @@ public class MessageListener extends ListenerAdapter {
             case "!player":{
                 characterCommand.command(event, userCommand);
                 break;
+            }
+            case "!gif":{
+                channel.sendMessage(gifly.getGif(userCommand[1])).queue();
             }
             default: {
                 logger.warn("Unrecognised command: {}", event.getMessage().getContentRaw());

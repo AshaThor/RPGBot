@@ -19,7 +19,7 @@ public class Help {
     public String help(String location) {
         String message = "";
         try {
-            BufferedReader reader = textFileReader.read(".\\src\\main\\resources\\" + location + ".txt");
+            BufferedReader reader = textFileReader.read("..\\src\\main\\resources\\" + location + ".txt");
             logger.info("{} file has been successfully read", location);
             String line = reader.readLine();
             while (line != null) {
@@ -29,7 +29,7 @@ public class Help {
             }
             return message;
         } catch (IOException e) {
-            logger.error("Help file read was not successful");
+            logger.error("Help file read was not successful: ${}", e.getMessage());
             return "Help file read was not successful";
         }
     }

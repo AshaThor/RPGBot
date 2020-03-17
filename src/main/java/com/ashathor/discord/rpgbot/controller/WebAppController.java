@@ -35,4 +35,8 @@ public class WebAppController {
             return null;
         }
     }
+    @RequestMapping("/about")
+    public String about() {
+        return "about";
+    }
 }
