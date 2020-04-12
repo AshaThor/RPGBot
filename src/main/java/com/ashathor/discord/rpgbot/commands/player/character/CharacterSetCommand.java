@@ -14,7 +14,7 @@ public class CharacterSetCommand {
     @Autowired
     private JsonEntityConversionInterface jsonEntityConversion;
 
-    public void command(@Nonnull MessageReceivedEvent event, String[] userCommand, String path) {
+    public void command(String[] userCommand, String path) {
         try {
             Character playerCharacter = jsonEntityConversion.read(path);
             switch (userCommand[2]) {
@@ -87,6 +87,9 @@ public class CharacterSetCommand {
                     playerCharacter.setCharacterInspiration(Integer.parseInt(userCommand[3]));
                     write(path, playerCharacter);
                     break;
+                }
+                default:{
+                    throw new IOException();
                 }
             }
         } catch (IOException e) {

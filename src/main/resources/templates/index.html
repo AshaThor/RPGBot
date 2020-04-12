@@ -9,72 +9,88 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico"/>
 
-    <title>Navbar Template for Bootstrap</title>
+    <title>RPG Helper</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">RPG Helper</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="about">About</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron text-center">
+    <h1>RPG Helper</h1>
+    <p>Not what you wanted, but good enough to use</p>
+</div>
 <div class="container">
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#" th:text="${characterName}">Project name</a>
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Turns out this could be useful</h3>
+            <p>If I wrote it correctly</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" id="test">
+            <div class="lead">
+                <strong>TEST CHARS:</strong>
+                <span th:text="${characterName}"></span>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
+            <div id="contents">
+                <ul>
+                    <li style="list-style-type:none" v-for="thing in things">
+                        <player-card
+                                v-bind:thing="thing" v-bind:key="thing.id">
+                        </player-card>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Static top</a></li>
-                    <li><a href="#/">Fixed top</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-    </nav>
-    <!-- Main component for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <!--Usage of models we wrote in WepAppController th:text="'Welcome to basic Bootstrap with Spring Boot created by ' + ${username} -->
-        <h3>Character Sheet</h3>
-        <p th:text="'Your Character Name: ' + ${characterName}" ></p>
-        <p th:text="'Your Character Race is: ' + ${characterRace}" ></p>
-        <p th:text="'This date example  ' + ${#dates.format(datetime, 'dd MMM yyyy HH:mm')}"></p>
-        <p> is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work.
-            It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>
-            <a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs &raquo;</a>
-        </p>
+            </div>
+        </div>
     </div>
-</div> <!-- /container -->
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+</div>
 </body>
+<script
+        src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js">
+</script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js">
+</script>
+<script type="text/babel">
+    // player-card is now a Vue component that generates a 'card' showing a player
+    // It can be used
+    // declaratively like <player-card v-bind:player="someplayer">
+    Vue.component('thing-card', {
+        props: ['thing'],
+        template: `<div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            {{ things.name }}
+                        </h6>
+                    </div>
+                </div>`
+    });
+
+    var app = new Vue({
+        el: '#test',
+        data:{
+            things:[
+                {
+                    id:"1",
+                    name: "beep"
+                },
+                {
+                    id:"2",
+                    name: "boop"
+                }
+            ]
+        }
+    });
+</script>
 </html>

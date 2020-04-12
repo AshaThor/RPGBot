@@ -34,3 +34,5 @@ build/
 /.mvn/wrapper/maven-wrapper.jar
 /JavaDoc/
 application-*
+/META-INF/
+/out/

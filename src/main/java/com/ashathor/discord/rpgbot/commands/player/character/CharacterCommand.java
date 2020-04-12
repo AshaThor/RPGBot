@@ -51,7 +51,7 @@ public class CharacterCommand {
                     break;
                 }
                 case "set": {
-                    characterSetCommand.command(event, userCommand, path);
+                    characterSetCommand.command(userCommand, path);
                     break;
                 }
                 //case "get":{

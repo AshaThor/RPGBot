@@ -67,9 +67,11 @@ public class MessageListener extends ListenerAdapter {
             }
             case "!gif":{
                 channel.sendMessage(gifly.getGif(userCommand[1])).queue();
+                break;
             }
             default: {
                 logger.warn("Unrecognised command: {}", event.getMessage().getContentRaw());
+                break;
             }
         }
     }
