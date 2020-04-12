@@ -1,6 +1,7 @@
 package com.ashathor.discord.rpgbot.service;
 
 import com.ashathor.discord.rpgbot.commands.admin.CreatePlayerStructure;
+import com.ashathor.discord.rpgbot.commands.admin.InitativeQueue;
 import com.ashathor.discord.rpgbot.commands.player.character.CharacterCommand;
 import com.ashathor.discord.rpgbot.commands.player.dice.DiceCommand;
 import com.ashathor.discord.rpgbot.random.Gifly;
@@ -30,6 +31,8 @@ public class MessageListener extends ListenerAdapter {
     private CharacterCommand characterCommand;
     @Autowired
     private Gifly gifly;
+    @Autowired
+    private InitativeQueue initativeQueue;
 
 
     @Override
@@ -67,6 +70,10 @@ public class MessageListener extends ListenerAdapter {
             }
             case "!gif":{
                 channel.sendMessage(gifly.getGif(userCommand[1])).queue();
+                break;
+            }
+            case "!inititave":{
+                initativeQueue.create(event,userCommand);
                 break;
             }
             default: {
