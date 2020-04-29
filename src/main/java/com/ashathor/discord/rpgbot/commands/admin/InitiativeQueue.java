@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nonnull;
 
 @Component
-public class InitativeQueue {
+public class InitiativeQueue {
     public void create(@Nonnull MessageReceivedEvent event, String[] userCommand){
         String[] userArray = new String[Integer.parseInt(userCommand[1])] ;
         EmbedBuilder teb = new EmbedBuilder();
         teb.setTitle("Initiative Queue");
         teb.setDescription("Click the emoji to roll initiative");
         teb.addField("Players", String.valueOf(userArray.length),true);
-        event.getChannel().sendMessage(teb.build()).queue();
+        event.getChannel().sendMessage(teb.build()).queue(message -> message.addReaction("U+1F3B2").queue());
     }
 }

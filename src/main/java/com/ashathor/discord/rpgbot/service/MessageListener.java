@@ -1,13 +1,14 @@
 package com.ashathor.discord.rpgbot.service;
 
 import com.ashathor.discord.rpgbot.commands.admin.CreatePlayerStructure;
-import com.ashathor.discord.rpgbot.commands.admin.InitativeQueue;
+import com.ashathor.discord.rpgbot.commands.admin.InitiativeQueue;
 import com.ashathor.discord.rpgbot.commands.player.character.CharacterCommand;
 import com.ashathor.discord.rpgbot.commands.player.dice.DiceCommand;
 import com.ashathor.discord.rpgbot.random.Gifly;
 import com.ashathor.discord.rpgbot.util.MessageParser;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,8 +33,7 @@ public class MessageListener extends ListenerAdapter {
     @Autowired
     private Gifly gifly;
     @Autowired
-    private InitativeQueue initativeQueue;
-
+    private InitiativeQueue initiativeQueue;
 
     @Override
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
@@ -72,8 +72,8 @@ public class MessageListener extends ListenerAdapter {
                 channel.sendMessage(gifly.getGif(userCommand[1])).queue();
                 break;
             }
-            case "!inititave":{
-                initativeQueue.create(event,userCommand);
+            case "!initiative":{
+                initiativeQueue.create(event,userCommand);
                 break;
             }
             default: {

@@ -15,6 +15,8 @@ public class StartBot {
     @Autowired
     private MessageListener listener;
     @Autowired
+    private ReactionListener reactionListener;
+    @Autowired
     private TextFileReader textFileReader;
     @Value("${jda.token}")
     private String token;
@@ -25,5 +27,6 @@ public class StartBot {
         JDA jda = new JDABuilder(token).build();
         //Add our event listener to the JDA instance
         jda.addEventListener(listener);
+        jda.addEventListener(reactionListener);
     }
 }
