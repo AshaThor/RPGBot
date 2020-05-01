@@ -1,7 +1,12 @@
 package com.ashathor.discord.rpgbot.service;
 
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.requests.ErrorResponse;
+import net.dv8tion.jda.api.requests.RestAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -16,8 +21,13 @@ public class ReactionListener extends ListenerAdapter {
     @Override
     public void onMessageReactionAdd(@Nonnull MessageReactionAddEvent event){
         if(event.getUser().isBot()) return;
-        Long messageID = event.getMessageIdLong();
-
+        /*
+        * After alot of googling
+        * https://www.programcreek.com/java-api-examples/?code=jagrosh/GiveawayBot/GiveawayBot-master/src/main/java/com/jagrosh/giveawaybot/entities/Giveaway.java
+        * is what i need
+        * will pick up on it tomorrow
+        * day 3 out!
+        * */
         }
     }
 

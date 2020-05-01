@@ -16,4 +16,13 @@ public class InitiativeQueue {
         teb.addField("Players", String.valueOf(userArray.length),true);
         event.getChannel().sendMessage(teb.build()).queue(message -> message.addReaction("U+1F3B2").queue());
     }
+    public void upddate(){
+        /* JDA peeps told me this
+        AshaThor - Is it possible to update an embeded message once sent?
+        DManstrator - retrieveMessageById -> ErrorResponse -> Unknown Message, yes. Get access to the message
+        (success consumer after sending / retrieveMessageById), edit it (with a new Embed (new EmbedBuilder(ember)), maybe override it (check methods) an send it again.
+        *
+        * */
+
+    }
 }
