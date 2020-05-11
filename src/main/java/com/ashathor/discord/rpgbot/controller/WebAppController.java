@@ -1,7 +1,7 @@
 package com.ashathor.discord.rpgbot.controller;
 
-import com.ashathor.discord.rpgbot.commands.player.character.Character;
-import com.ashathor.discord.rpgbot.util.json.JsonEntityConversion;
+import com.ashathor.discord.rpgbot.discord.commands.player.character.Character;
+import com.ashathor.discord.rpgbot.discord.util.json.JsonEntityConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class WebAppController {
             model.addAttribute("characterRace", playerChar.getCharacterRace());
             return "index";
         }catch (IOException e){
-            return null;
+            return "about";
         }
     }
     @RequestMapping("/about")
